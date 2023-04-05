@@ -9,8 +9,9 @@ public class Application {
         final String url = "jdbc:postgresql://localhost:5432/skypro";
 
         try (final Connection connection = DriverManager.getConnection(url, user, password);
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM employee WHERE id = 5 ")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM employee WHERE id = (?)")) {
 
+            statement.setInt(1,5);
             final ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -32,10 +33,11 @@ public class Application {
             System.out.println("Ошибка при подключении к БД!");
             e.printStackTrace();
         }
-        Employee employee10 = new Employee("Ivan", "Popov", "man", 34, new City(7, "Kemerovo"));
+        City city2 = new City(2, "Kazan");
+        Employee employee10 = new Employee("Ivan", "Popov", "man", 34, city2);
        EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
         employeeDao.add(employee10);
-        employeeDao.getById(5);
+        employeeDao.getById(10);
         employeeDao.getAllEmployee();
         employeeDao.updateEmployee(10, employee10);
         employeeDao.deleteEmployee(10);
