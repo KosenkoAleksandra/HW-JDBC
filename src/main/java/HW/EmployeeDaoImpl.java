@@ -82,7 +82,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
     public void updateEmployee(int id, Employee employee) {
         try (final Connection connection = DriverManager.getConnection(url, user, password);
              PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE employee SET first_name = (?), last_name = (?), gender = (?), age = (?), city_id = (?), WHERE id = (?)")) {
+                    "UPDATE employee SET first_name = (?), last_name = (?), gender = (?), age = (?), city_id = (?) WHERE id = (?)")) {
             statement.setString(1, employee.getFirst_name());
             statement.setString(2, employee.getLast_name());
             statement.setString(3, employee.getGender());
