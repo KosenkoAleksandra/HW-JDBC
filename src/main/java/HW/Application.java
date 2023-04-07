@@ -23,7 +23,11 @@ public class Application {
         employeeDao.add(employee);
         employeeDao.getById(15);
         employeeDao.getAllEmployee();
-        employeeDao.updateEmployee(employee, 10);
+        employeeDao.updateEmployee(employee, 5);
         employeeDao.deleteEmployee(employee);
+
+
+
+
     }
 }
