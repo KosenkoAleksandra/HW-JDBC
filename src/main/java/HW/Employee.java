@@ -4,28 +4,21 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "employee")
-
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
-    @Column(name = "first_name")
     private String first_name;
-    @Column(name = "last_name")
     private String last_name;
-    @Column(name = "gender")
     private String gender;
-    @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int city;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
+    private City city;
     public Employee() {
-
     }
 
-    public Employee(String first_name, String last_name, String gender, int age, int city) {
+    public Employee(String first_name, String last_name, String gender, int age, City city) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -34,11 +27,11 @@ public class Employee {
         this.city = city;
     }
 
-    public int getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
