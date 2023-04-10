@@ -1,7 +1,18 @@
 package HW;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class City {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int city_id;
     private String city_name;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private List<Employee> employees;
+    public City() {
+    }
 
     public City(int city_id, String city_name) {
         this.city_id = city_id;
@@ -24,11 +35,20 @@ public class City {
         this.city_name = city_name;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "City{" +
                 "city_id=" + city_id +
                 ", city_name='" + city_name + '\'' +
+                ", employees=" + employees +
                 '}';
     }
 }
