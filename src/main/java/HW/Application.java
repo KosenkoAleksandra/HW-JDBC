@@ -15,9 +15,11 @@ public class Application {
         cityDao.add(city1);
         System.out.println(cityDao.getAllCity().contains(city1));
 
+        city1.setEmployees(List.of(employee1, employee2));
 
+        City updatedCity = cityDao.updateCity(city1);
 
-
+        System.out.println(employeeDAO.getAllEmployee().containsAll(updatedCity.getEmployees()));
 
 
     }
