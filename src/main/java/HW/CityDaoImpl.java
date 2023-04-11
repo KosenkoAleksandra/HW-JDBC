@@ -7,13 +7,14 @@ import java.util.List;
 
 public class CityDaoImpl implements CityDAO {
     @Override
-    public City add(City city) {
+    public Integer add(City city) {
+        Integer id;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(city);
+            id = (Integer) session.save(city);
             transaction.commit();
         }
-        return city;
+        return id;
     }
 
     @Override
